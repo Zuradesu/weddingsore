@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { background: #263b4b; -webkit-text-size-adjust: 100%; }
+body { font-family: var(--font-sans), system-ui, sans-serif; color: #e5e8e6; overflow-x: hidden; }
+::selection { background: #d6a477; color: #263b4b; }
+
+@layer components {
+  .scene-label { @apply font-sans text-[0.66rem] uppercase tracking-[0.42em] opacity-70; }
+  .title-serif { @apply font-serif font-light leading-[1.05] tracking-[0.01em]; }
+  .btn-film { @apply inline-flex items-center justify-center gap-2 border px-6 py-3 font-sans text-[0.7rem] uppercase tracking-[0.32em] transition-colors duration-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4; }
+  .field { @apply w-full border-0 border-b bg-transparent px-0 py-3 font-sans text-base outline-none transition-colors duration-500 placeholder:opacity-40; border-bottom-color: color-mix(in srgb, currentColor 30%, transparent); }
+  .field:focus { border-bottom-color: currentColor; }
+}
+
+.grain {
+  position: fixed; inset: -10%; z-index: 60; pointer-events: none; opacity: 0.09;
+  background-image: url("/textures/grain.svg"); mix-blend-mode: overlay;
+  animation: grain 1.2s steps(1) infinite; will-change: transform;
+}
+.vignette {
+  position: fixed; inset: 0; z-index: 55; pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(18, 28, 36, 0.38) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain, .animate-drift, .animate-leak, .animate-eq { animation: none !important; }
+}
